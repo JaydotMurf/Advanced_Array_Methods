@@ -1,3 +1,7 @@
+//  ! Loops through an array
+//  ! Runs a callback function for each value in the array and then returns undefined
+//  ! forEach will always return undefined - no matter what
+
 // TODO: learn basics of forEach
 const colors = ['green', 'purple', 'red', 'black'];
 
@@ -30,6 +34,9 @@ function myForEach(arr, callback) {
 myForEach(colors, function (color, i) {
   console.log(color.toUpperCase(), `at index of:`, i);
 });
+
+//  ! You want to iterate over an array, but the return value of your callback is not important
+//  ! Almost all of the time there are better options…
 
 // ! RECAP
 // ! forEach iterates over an array, runs a callback on each value and
