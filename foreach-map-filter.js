@@ -6,10 +6,13 @@ Examples:
     doubleValues([5,1,2,3,10]) // [10,2,4,6,20]
 
 */
+//  ! Completed
 function doubleValues(arr) {
-  return arr.map((number) => {
-    return number * 2;
-  });
+  const newArr = [];
+  for (let number of arr) {
+    newArr.push(number * 2);
+  }
+  return newArr;
 }
 
 /*
@@ -20,6 +23,7 @@ Examples:
     onlyEvenValues([5,1,2,3,10]) // [2,10]
 
 */
+//  ! Completed
 function onlyEvenValues(arr) {
   return arr.filter((number) => {
     return number % 2 === 0;
@@ -34,6 +38,7 @@ Examples:
     showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
 
 */
+//  ! Completed
 function showFirstAndLast(arr) {
   return arr.map((str, idx) => {
     return `${str[0]}${str[str.length - 1]}`;
@@ -49,6 +54,7 @@ Examples:
     [{name: 'Elie', title:'instructor'}, {name: 'Tim', title:'instructor'}, {name: 'Matt', title:'instructor'}, {name: 'Colt', title:'instructor'}]
 
 */
+//  ! Completed
 function addKeyAndValue(arr, key, value) {
   return arr.map((obj) => {
     obj[`${key}`] = value;
@@ -75,7 +81,7 @@ Examples:
     doubleValuesWithMap([1,2,3]) // [2,4,6]
     doubleValuesWithMap([1,-2,-3]) // [2,-4,-6]
 */
-
+//  ! Completed
 function doubleValuesWithMap(arr) {
   return arr.map((number) => {
     return number * 2;
@@ -89,7 +95,7 @@ Examples:
     valTimesIndex([1,2,3]) // [0,2,6]
     valTimesIndex([1,-2,-3]) // [0,-2,-6]
 */
-
+//  ! Completed
 function valTimesIndex(arr) {
   return arr.map((number, idx) => {
     return number * idx;
@@ -103,8 +109,12 @@ Examples:
     extractKey([{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}], 'name') // ['Elie', 'Tim', 'Matt', 'Colt']
 */
 
-function extractKey(arr, key) {}
-
+//  ! Completed
+function extractKey(arr, key) {
+  return arr.map(function (obj) {
+    return obj[key];
+  });
+}
 /*
 Write a function called extractFullName which accepts an array of objects and returns a new array with the value of the key with a name of "first" and the value of a key with the name of  "last" in each object, concatenated together with a space. 
 
@@ -112,7 +122,12 @@ Examples:
     extractFullName([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia"}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele"}]) // ['Elie Schoppik', 'Tim Garcia', 'Matt Lane', 'Colt Steele']
 */
 
-function extractFullName(arr) {}
+//  ! Completed
+function extractFullName(arr) {
+  return arr.map(function (obj) {
+    return `${obj.first} ${obj.last}`;
+  });
+}
 
 /*
 Write a function called filterByValue which accepts an array of objects and a key and returns a new array with all the objects that contain that key.
