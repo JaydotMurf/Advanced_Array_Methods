@@ -72,6 +72,7 @@ Examples:
     vowelCount('hmmm') // {};
     vowelCount('I Am awesome and so are you') // {i: 1, a: 4, e: 3, o: 3, u: 1};
 */
+// TODO: Come back to this one
 function vowelCount(str) {}
 
 /*
@@ -196,7 +197,17 @@ Examples:
     removeVowels('ZZZZZZ') // ('zzzzzz')
 */
 
-function removeVowels(str) {}
+function removeVowels(str) {
+  const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+  const wordWithVowels = [...str];
+
+  const wordWithOutVowels = wordWithVowels.filter((letter) => {
+    if (!VOWELS.includes(letter.toLowerCase())) {
+      return letter;
+    }
+  });
+  return wordWithOutVowels.join('').toLowerCase();
+}
 
 /*
 Write a function called doubleOddNumbers which accepts an array and returns a new array with all of the odd numbers doubled (HINT - you can use map and filter to double and then filter the odd numbers).
@@ -206,4 +217,31 @@ Examples:
     doubleOddNumbers([4,4,4,4,4]) // []
 */
 
-function doubleOddNumbers(arr) {}
+function doubleOddNumbers(arr) {
+  const arrayContainsOnlyOneElement = (arr) => {
+    if (arr.length === 0) {
+      // empty array is considered to contain only one element
+      return true;
+    }
+
+    const firstElement = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] !== firstElement) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  if (!arrayContainsOnlyOneElement)
+    return arr
+      .map((num) => {
+        return num * 2;
+      })
+      .filter((num) => {
+        return num % 2 !== 0;
+      });
+}
+
+console.log(doubleOddNumbers([1, 2, 3, 4, 5]));
