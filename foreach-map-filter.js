@@ -6,7 +6,7 @@ Examples:
     doubleValues([5,1,2,3,10]) // [10,2,4,6,20]
 
 */
-//  ! Completed
+//  * TESTED
 function doubleValues(arr) {
   const newArr = [];
   for (let number of arr) {
@@ -23,7 +23,7 @@ Examples:
     onlyEvenValues([5,1,2,3,10]) // [2,10]
 
 */
-//  ! Completed
+//  * TESTED
 function onlyEvenValues(arr) {
   return arr.filter((number) => {
     return number % 2 === 0;
@@ -38,7 +38,7 @@ Examples:
     showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
 
 */
-//  ! Completed
+//  * TESTED
 function showFirstAndLast(arr) {
   return arr.map((str, idx) => {
     return `${str[0]}${str[str.length - 1]}`;
@@ -54,7 +54,7 @@ Examples:
     [{name: 'Elie', title:'instructor'}, {name: 'Tim', title:'instructor'}, {name: 'Matt', title:'instructor'}, {name: 'Colt', title:'instructor'}]
 
 */
-//  ! Completed
+//  * TESTED
 function addKeyAndValue(arr, key, value) {
   return arr.map((obj) => {
     obj[`${key}`] = value;
@@ -81,7 +81,7 @@ Examples:
     doubleValuesWithMap([1,2,3]) // [2,4,6]
     doubleValuesWithMap([1,-2,-3]) // [2,-4,-6]
 */
-//  ! Completed
+//  * TESTED
 function doubleValuesWithMap(arr) {
   return arr.map((number) => {
     return number * 2;
@@ -95,7 +95,7 @@ Examples:
     valTimesIndex([1,2,3]) // [0,2,6]
     valTimesIndex([1,-2,-3]) // [0,-2,-6]
 */
-//  ! Completed
+//  * TESTED
 function valTimesIndex(arr) {
   return arr.map((number, idx) => {
     return number * idx;
@@ -109,7 +109,7 @@ Examples:
     extractKey([{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}], 'name') // ['Elie', 'Tim', 'Matt', 'Colt']
 */
 
-//  ! Completed
+//  * TESTED
 function extractKey(arr, key) {
   return arr.map(function (obj) {
     return obj[key];
@@ -122,7 +122,7 @@ Examples:
     extractFullName([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia"}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele"}]) // ['Elie Schoppik', 'Tim Garcia', 'Matt Lane', 'Colt Steele']
 */
 
-//  ! Completed
+//  * TESTED
 function extractFullName(arr) {
   return arr.map(function (obj) {
     return `${obj.first} ${obj.last}`;
@@ -136,7 +136,14 @@ Examples:
     filterByValue([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner') // [{first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Colt', last:"Steele", isCatOwner: true}]
 */
 
-function filterByValue(arr, key) {}
+//  * TESTED
+function filterByValue(arr, key) {
+  return arr.filter((obj) => {
+    if (obj.hasOwnProperty(key)) {
+      return obj;
+    }
+  });
+}
 
 /*
 Write a function called find which accepts an array and a value and returns the first element in the array that has the same value as the second parameter or undefined if the value is not found in the array.
@@ -146,7 +153,15 @@ Examples:
     find([1,2,3,4,5], 10) // undefined
 */
 
-function find(arr, searchValue) {}
+//  * TESTED
+function find(arr, searchValue) {
+  for (let ele of arr) {
+    if (ele === searchValue) {
+      return ele;
+    }
+  }
+  return undefined;
+}
 
 /*
 Write a function called findInObj which accepts an array of objects, a key, and some value to search for and returns the first found value in the array.
@@ -155,7 +170,22 @@ Examples:
     findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true) // {first: 'Tim', last:"Garcia", isCatOwner: true}
 */
 
-function findInObj(arr, key, searchValue) {}
+// * TESTED
+// TODO: Refactor
+// ? Is there a better way to complete this
+function findInObj(arr, key, searchValue) {
+  const filteredArr = [];
+  for (let obj of arr) {
+    for (key in obj) {
+      if (obj[key] === searchValue) {
+        // console.log(`${key}: ${obj[key]}`);
+        // console.log(obj);
+        filteredArr.push(obj);
+      }
+    }
+  }
+  return filteredArr[0];
+}
 
 /*
 Write a function called removeVowels which accepts a string and returns a new string with all of the vowels (both uppercased and lowercased) removed. Every character in the new string should be lowercased.
