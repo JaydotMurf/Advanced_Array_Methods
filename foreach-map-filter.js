@@ -73,7 +73,27 @@ Examples:
     vowelCount('I Am awesome and so are you') // {i: 1, a: 4, e: 3, o: 3, u: 1};
 */
 // TODO: Come back to this one
-function vowelCount(str) {}
+function vowelCount(str) {
+  const stringArray = [...str];
+  console.log(stringArray);
+
+  const countOccurrences = (stringArray) => {
+    const counter = {};
+    for (let i = 0; i < stringArray.length; i++) {
+      if (counter[stringArray[i]]) {
+        counter[stringArray[i]]++;
+      } else {
+        counter[stringArray[i]] = 1;
+      }
+    }
+    console.log(counter);
+    return counter;
+  };
+
+  return countOccurrences();
+}
+
+console.log(vowelCount('Elie'));
 
 /*
 Write a function called doubleValuesWithMap which accepts an array and returns a new array with all the values in the array passed to the function doubled
@@ -197,6 +217,7 @@ Examples:
     removeVowels('ZZZZZZ') // ('zzzzzz')
 */
 
+// * TESTED
 function removeVowels(str) {
   const VOWELS = ['a', 'e', 'i', 'o', 'u'];
   const wordWithVowels = [...str];
@@ -217,31 +238,30 @@ Examples:
     doubleOddNumbers([4,4,4,4,4]) // []
 */
 
+// * TESTED
 function doubleOddNumbers(arr) {
-  const arrayContainsOnlyOneElement = (arr) => {
-    if (arr.length === 0) {
-      // empty array is considered to contain only one element
-      return true;
-    }
-
-    const firstElement = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-      if (arr[i] !== firstElement) {
-        return false;
+  const hasMatch = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] === arr[j]) {
+          return true;
+        }
       }
     }
-
-    return true;
+    return false;
   };
 
-  if (!arrayContainsOnlyOneElement)
-    return arr
-      .map((num) => {
-        return num * 2;
-      })
-      .filter((num) => {
-        return num % 2 !== 0;
-      });
+  if (hasMatch(arr)) return [];
+
+  const oddNumbersOnly = arr.filter((interger) => {
+    return interger % 2 !== 0;
+  });
+
+  const oddNumbersDoubled = oddNumbersOnly.map((oddNumber) => {
+    return oddNumber * 2;
+  });
+
+  return oddNumbersDoubled;
 }
 
 console.log(doubleOddNumbers([1, 2, 3, 4, 5]));
