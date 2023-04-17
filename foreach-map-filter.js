@@ -9,9 +9,9 @@ Examples:
 //  * TESTED
 function doubleValues(arr) {
   const newArr = [];
-  for (let number of arr) {
+  arr.forEach((number) => {
     newArr.push(number * 2);
-  }
+  });
   return newArr;
 }
 
@@ -54,6 +54,7 @@ Examples:
     [{name: 'Elie', title:'instructor'}, {name: 'Tim', title:'instructor'}, {name: 'Matt', title:'instructor'}, {name: 'Colt', title:'instructor'}]
 
 */
+
 //  * TESTED
 function addKeyAndValue(arr, key, value) {
   return arr.map((obj) => {
@@ -72,28 +73,26 @@ Examples:
     vowelCount('hmmm') // {};
     vowelCount('I Am awesome and so are you') // {i: 1, a: 4, e: 3, o: 3, u: 1};
 */
-// TODO: Come back to this one
+
+//  * TESTED
 function vowelCount(str) {
-  const stringArray = [...str];
-  console.log(stringArray);
+  const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+  const wordArray = str.toLowerCase().split('');
+  const wordWithoutVowels = wordArray.filter((char) => {
+    return VOWELS.includes(char);
+  });
+  const wordObj = {};
 
-  const countOccurrences = (stringArray) => {
-    const counter = {};
-    for (let i = 0; i < stringArray.length; i++) {
-      if (counter[stringArray[i]]) {
-        counter[stringArray[i]]++;
-      } else {
-        counter[stringArray[i]] = 1;
-      }
+  wordWithoutVowels.forEach((char) => {
+    if (wordObj[char]) {
+      wordObj[char] += 1;
+    } else {
+      wordObj[char] = 1;
     }
-    console.log(counter);
-    return counter;
-  };
+  });
 
-  return countOccurrences();
+  return wordObj;
 }
-
-console.log(vowelCount('Elie'));
 
 /*
 Write a function called doubleValuesWithMap which accepts an array and returns a new array with all the values in the array passed to the function doubled
@@ -176,12 +175,13 @@ Examples:
 
 //  * TESTED
 function find(arr, searchValue) {
-  for (let ele of arr) {
-    if (ele === searchValue) {
-      return ele;
-    }
-  }
-  return undefined;
+  if (!arr.includes(searchValue)) return undefined;
+
+  const matchedElement = arr.filter((element) => {
+    return element === searchValue;
+  });
+
+  return parseInt(matchedElement.join(''));
 }
 
 /*
@@ -192,20 +192,12 @@ Examples:
 */
 
 // * TESTED
-// TODO: Refactor
-// ? Is there a better way to complete this
 function findInObj(arr, key, searchValue) {
-  const filteredArr = [];
-  for (let obj of arr) {
-    for (key in obj) {
-      if (obj[key] === searchValue) {
-        // console.log(`${key}: ${obj[key]}`);
-        // console.log(obj);
-        filteredArr.push(obj);
-      }
-    }
-  }
-  return filteredArr[0];
+  const catOwners = arr.filter((obj) => {
+    return obj[key] === searchValue;
+  });
+
+  return catOwners[0];
 }
 
 /*
@@ -263,5 +255,3 @@ function doubleOddNumbers(arr) {
 
   return oddNumbersDoubled;
 }
-
-console.log(doubleOddNumbers([1, 2, 3, 4, 5]));
